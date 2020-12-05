@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 
 import * as L from 'leaflet';
+import { PrimeiroMapaService } from 'src/app/services/primeiro-mapa.service';
 
 @Component({
   selector: 'app-primeiro-mapa',
@@ -11,27 +12,24 @@ import * as L from 'leaflet';
 export class PrimeiroMapaComponent implements OnInit {
   map: any;
   mapOptions: L.MapOptions;
-  constructor() {
-    this.mapOptions = {
-      center: L.latLng(51.505, 0),
-      zoom: 12,
-      layers: [
-        L.tileLayer(
-          'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          {
-            maxZoom: 18,
-            attribution: 'Map data © OpenStreetMap contributors'
-          })
-      ],
-    };
-   }
-
 
   onMapReady(map: L.Map){
     this.map = map
-    const marker = new L.Marker([51.51, 0])
-    marker.addTo(this.map)
+    L.control.layers(this.primeiroMapaService.BaseUrl).addTo(this.map)
+    this.map = this.primeiroMapaService.center(this.map)
+    this.primeiroMapaService.BaseUrl.OpenStreetMaps.addTo(this.map);
   }
+
+  tryGeoJson(){
+    
+  }
+
+  constructor(private primeiroMapaService: PrimeiroMapaService) {
+    this.mapOptions = {
+      zoom: 12,
+      zoomSnap: 0.5,
+    };
+   }
   ngOnInit(): void {
   }
 
