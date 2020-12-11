@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http'
 
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
 import { AppRoutingModule } from './app-routing.module';
@@ -14,7 +15,8 @@ import { PrimeiroMapaComponent } from './views/primeiro-mapa/primeiro-mapa.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LeafletModule
+    LeafletModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

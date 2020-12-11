@@ -1,10 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as L from 'leaflet'
 @Injectable({
     providedIn: 'root',
 })
 export class PrimeiroMapaService{
-    constructor(){
+    carros: any;
+    constructor(private http: HttpClient){
     }
 
     BaseUrl = {
@@ -28,5 +30,9 @@ export class PrimeiroMapaService{
         return this.fitBounds(map, bounds);
     }
 
+    // async getCarros(){
+    //     await(this.carros = this.http.get('http://localhost:3000/view'));
 
+    //     return this.carros
+    // }
 }
